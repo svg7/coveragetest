@@ -1,0 +1,57 @@
+{
+  "name": "chrome-debugging-client",
+  "version": "0.4.1",
+  "description": "An async/await friendly Chrome debugging client with TypeScript support",
+  "keywords": [
+    "chrome",
+    "debugging",
+    "protocol",
+    "typescript"
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist/index.d.ts",
+    "dist/index.js",
+    "dist/index.js.map",
+    "dist/lib",
+    "dist/protocol",
+    "dist/codegen"
+  ],
+  "directories": {
+    "dist": "dist",
+    "protocol": "dist/protocol",
+    "codegen": "dist/codegen"
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run rebuild",
+    "compile-protocol-gen": "tsc -p scripts/tsconfig.json",
+    "protocol-gen": "npm run compile-protocol-gen && node dist/scripts/generate-protocol.js",
+    "rebuild": "rm -rf dist && tsc",
+    "compile": "tsc --watch",
+    "lint": "tslint -p tsconfig.json",
+    "test": "tsc && node dist/test/index.js | faucet"
+  },
+  "author": "Kris Selden <kris.selden@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krisselden/chrome-debugging-client.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/node": "^7.0.5",
+    "@types/rimraf": "^0.0.28",
+    "@types/tape": "^4.2.29",
+    "@types/ws": "^0.0.38",
+    "mktemp": "^0.4.0",
+    "rimraf": "^2.5.1",
+    "ws": "^1.0.1"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.4.0",
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
+  },
+  "engine": "node >= 4.0.0"
+}
